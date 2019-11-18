@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
+import { getFirestore } from 'redux-firestore';
 
 class ListScreen extends Component {
     state = {
@@ -13,11 +14,30 @@ class ListScreen extends Component {
 
     handleChange = (e) => {
         const { target } = e;
+        const todoList = this.props.todoList;
 
-        this.setState(state => ({
-            ...state,
-            [target.id]: target.value,
-        }));
+        // console.log(target.id);
+        // console.log(todoList.id);
+
+        if(target.id === "owner") {
+            getFirestore().collection("todoLists").doc(todoList.id).update({
+                owner: target.value,
+            })
+        }
+
+        if(target.id === "name") {
+            getFirestore().collection("todoLists").doc(todoList.id).update({
+                name: target.value,
+            })
+        }
+   
+
+        // this.setState(state => ({
+        //     name: target.value,
+        //     owner: target.value
+        //     // ...state,
+        //     // [target.id]: target.value,
+        // }));
     }
 
     render() {
@@ -28,15 +48,15 @@ class ListScreen extends Component {
         }
 
         return (
-            <div className="container white">
+            <div className="container">
                 <h5 className="grey-text text-darken-3">Todo List</h5>
                 <div className="input-field">
                     <label htmlFor="email">Name</label>
-                    <input className="active" type="text" name="name" id="name" onChange={this.handleChange} value={todoList.name} />
+                    <input className="active" type="text" name="name" id="name" onChange={(e) => this.handleChange(e)} value={todoList.name} />
                 </div>
                 <div className="input-field">
                     <label htmlFor="password">Owner</label>
-                    <input className="active" type="text" name="owner" id="owner" onChange={this.handleChange} value={todoList.owner} />
+                    <input className="active" type="text" name="owner" id="owner" onChange={(e) => this.handleChange(e)} value={todoList.owner} />
                 </div>
                 <ItemsList todoList={todoList} />
             </div>
