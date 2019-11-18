@@ -8,12 +8,16 @@ import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
 
 
+
 class ItemScreen extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            description: this.props.location.sampleParam3 === undefined ? "" : this.props.location.sampleParam.items[this.props.location.sampleParam3].description
+            description: this.props.location.sampleParam3 === undefined ? "" : this.props.location.sampleParam.items[this.props.location.sampleParam3].description,
+            assigned: this.props.location.sampleParam3 === undefined ? "" : this.props.location.sampleParam.items[this.props.location.sampleParam3].assigned_to,
+            due_date: this.props.location.sampleParam3 === undefined ? undefined : this.props.location.sampleParam.items[this.props.location.sampleParam3].due_date,
+            completed: this.props.location.sampleParam3 === undefined ? undefined : this.props.location.sampleParam.items[this.props.location.sampleParam3].completed
         }
     }
 
@@ -103,7 +107,7 @@ class ItemScreen extends React.Component {
             <div>
                 <div className = "leftside"> Assigned to: 
                 </div>
-                <input className = "rightside" id = "item_form_container_assigned" type = "text">
+                <input className = "rightside" id = "item_form_container_assigned" value = {this.state.assigned} onChange= {e => this.setState({assigned : e.target.value})} type = "text">
                 </input>
     
             </div>
@@ -113,7 +117,7 @@ class ItemScreen extends React.Component {
             <div>
                 <div className = "leftside"> Due Date: 
                 </div>
-                <input className = "rightside" id = "item_form_container_date"  type = "date">
+                <input className = "rightside" id = "item_form_container_date" value = {this.state.due_date} onChange= {e => this.setState({due_date : e.target.value})} type = "date">
                 </input>
     
             </div>
@@ -123,8 +127,11 @@ class ItemScreen extends React.Component {
             <div>
             <div className = "leftside"> Completed: 
             </div>
-            <input className = "rightside testing" id = "item_form_container_completed"  type = "checkbox">
-            </input>
+            <label>
+            <input className = "rightside testing" id = "item_form_container_completed" checked = {this.state.completed} onChange= {e => this.setState({completed : e.target.checked})} type = "checkbox"/>
+            
+            <span></span>
+            </label>
            
 
         </div>
