@@ -3,19 +3,189 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ItemCard from './ItemCard';
 import { Link } from 'react-router-dom';
-import {Card} from 'react-materialize';
 import { firestoreConnect } from 'react-redux-firebase';
+import { getFirestore } from 'redux-firestore';
+
 
 class ItemsList extends React.Component {
+    state = {
+        taskSorted: "dsc",
+        dateSorted: "dsc",
+        completedSorted: "dsc"
+    }
+    sortingTask = (e) => {
+        const myTask = this.props.todoList;
+
+        if(this.state.taskSorted === "dsc") {
+            myTask.items.sort(function (a,b) {
+                if(a.description > b.description) {
+                    return 1;
+                }
+                if(a.description < b.description) {
+                    return -1;
+                }
+                if(a.description === b.description) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myTask.items.length; i++ ) {
+               myTask.items[i].key = i;
+               myTask.items[i].id = i;
+           }
+
+           this.setState({
+               taskSorted: "asc"
+           })
+        }
+
+        else {
+            myTask.items.sort(function (a,b) {
+                if(a.description < b.description) {
+                    return 1;
+                }
+                if(a.description > b.description) {
+                    return -1;
+                }
+                if(a.description === b.description) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myTask.items.length; i++ ) {
+               myTask.items[i].key = i;
+               myTask.items[i].id = i;
+           }
+
+           this.setState({
+               taskSorted: "dsc"
+           })
+        }
+       
+        
+        getFirestore().collection("todoLists").doc(this.props.todoList.id).update({
+                items: myTask.items,
+            })
+    }
+
+    sortingDate = (e) => {
+        const myDate = this.props.todoList;
+
+        if(this.state.dateSorted === "dsc") {
+            myDate.items.sort(function (a,b) {
+                if(a.due_date > b.due_date) {
+                    return 1;
+                }
+                if(a.due_date < b.due_date) {
+                    return -1;
+                }
+                if(a.due_date === b.due_date) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myDate.items.length; i++ ) {
+               myDate.items[i].key = i;
+               myDate.items[i].id = i;
+           }
+
+           this.setState({
+               dateSorted: "asc"
+           })
+        }
+
+        else {
+            myDate.items.sort(function (a,b) {
+                if(a.due_date < b.due_date) {
+                    return 1;
+                }
+                if(a.due_date > b.due_date) {
+                    return -1;
+                }
+                if(a.due_date === b.due_date) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myDate.items.length; i++ ) {
+               myDate.items[i].key = i;
+               myDate.items[i].id = i;
+           }
+
+           this.setState({
+               dateSorted: "dsc"
+           })
+        }
+       
+        
+        getFirestore().collection("todoLists").doc(this.props.todoList.id).update({
+                items: myDate.items,
+            })
+    }
+
+
+    sortingCompleted = (e) => {
+        const myComplete = this.props.todoList;
+
+        if(this.state.completedSorted === "dsc") {
+            myComplete.items.sort(function (a,b) {
+                if(a.completed > b.completed) {
+                    return 1;
+                }
+                if(a.completed < b.completed) {
+                    return -1;
+                }
+                if(a.completed === b.completed) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myComplete.items.length; i++ ) {
+               myComplete.items[i].key = i;
+               myComplete.items[i].id = i;
+           }
+
+           this.setState({
+               completedSorted: "asc"
+           })
+        }
+
+        else {
+            myComplete.items.sort(function (a,b) {
+                if(a.completed < b.completed) {
+                    return 1;
+                }
+                if(a.completed > b.completed) {
+                    return -1;
+                }
+                if(a.completed === b.completed) {
+                    return 0;
+                }
+            });
+    
+           for(var i = 0; i < myComplete.items.length; i++ ) {
+               myComplete.items[i].key = i;
+               myComplete.items[i].id = i;
+           }
+
+           this.setState({
+               completedSorted: "dsc"
+           })
+        }
+       
+        
+        getFirestore().collection("todoLists").doc(this.props.todoList.id).update({
+                items: myComplete.items,
+            })
+    }
+
+
+
     render() {
         const todoList = this.props.todoList;
         const items = todoList.items;
         console.log("ItemsList: todoList.id " + todoList.id);
         
-        sortingTask = (e) => {
-            // console.log(this.props.todoList);
-            console.log("hello");
-        }
 
         return (
             <div className="todo-lists section">
@@ -24,8 +194,8 @@ class ItemsList extends React.Component {
                                     <div className="card black darken-1">
                                         <div className="card-content white-text">
                                             <span onClick = {(e) => this.sortingTask(e)} className = "task_header">Task</span>
-                                            <span className = "date_header">Date</span>
-                                            <span className = "status_header">Status</span>
+                                            <span onClick = {(e) => this.sortingDate(e)} className = "date_header">Date</span>
+                                            <span onClick = {(e) => this.sortingCompleted(e)} className = "status_header">Status</span>
                                         </div>
                                     </div>
                                     </div>

@@ -77,19 +77,22 @@ div.banner {
 
 
 .item_due {
-  margin-left: 170px;
+  margin-left: 250px;
   margin-top: -26.5px;
 }
 
 #item_complete {
-  margin-left: 340px;
+  margin-left: 400px;
   margin-top: -63px;
 }
 
-.date_header, .status_header {
-  margin-left: 125px;
+.date_header {
+  margin-left: 200px;
 }
 
+.status_header {
+  margin-left: 100px;
+}
 
 .list_item_card_not_completed {
   color: red;

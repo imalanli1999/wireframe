@@ -16,7 +16,7 @@ class ItemCard extends React.Component {
             <div>
                 <div className = "item_name">{item.description}</div>
                 <div className = "item_due">{item.due_date}</div>
-                <div className = "item_assigned">{item.assigned_to}</div>
+                <div className = "item_assigned">Assigned to: {item.assigned_to}</div>
                 <div id = "item_complete" className={this.completedClass()}>{this.completedText()}</div>
             </div>
             // </div>

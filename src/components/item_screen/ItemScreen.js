@@ -47,8 +47,6 @@ class ItemScreen extends React.Component {
             items : testing
         });
     
-        console.log(this.props.location.sampleParam);
-
         this.props.history.push('/todoList/' + this.props.location.sampleParam.id);
         }
 
