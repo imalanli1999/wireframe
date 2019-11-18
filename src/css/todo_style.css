@@ -39,3 +39,58 @@ div.banner {
 .home_new_list_button:hover {
   box-shadow: 1px 2px;
 }
+
+.list_item_card_completed {
+  color: green;
+}
+
+#abcd {
+  width: 110%;
+  margin-top: -45px;
+  margin-left: -10px;
+}
+
+#abcde {
+  width: 110%;
+  margin-left: -10px;
+}
+
+
+.task_header, .date_header, .status_header {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.item_name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: -20px;
+}
+#item_complete, .item_assigned, .item_due {
+  font-size: 16px;
+}
+
+.item_assigned {
+  margin-bottom: 15px;
+}
+
+
+
+.item_due {
+  margin-left: 170px;
+  margin-top: -26.5px;
+}
+
+#item_complete {
+  margin-left: 340px;
+  margin-top: -63px;
+}
+
+.date_header, .status_header {
+  margin-left: 125px;
+}
+
+
+.list_item_card_not_completed {
+  color: red;
+}

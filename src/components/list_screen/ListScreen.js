@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { Link } from 'react-router-dom';
-
+import { Modal, Button } from 'react-materialize';
 import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
@@ -15,6 +15,10 @@ class ListScreen extends Component {
         owner: '',
     }
 
+    yesDialog = (e) => {
+        getFirestore().collection("todoLists").doc(this.props.todoList.id).delete();
+        this.props.history.push("/");
+    }
 
 
     handleChange = (e) => {
@@ -54,7 +58,25 @@ class ListScreen extends Component {
 
         return (
             <div className="container">
-                <h5 className="grey-text text-darken-3">Todo List</h5>
+                <h5 className="grey-text text-darken-3">Todo List
+                <span>
+                <Modal header="Delete list?" trigger={<Button> &#128465; </Button>}>
+                    <p><strong>Are you sure you want to delete this list?</strong></p>
+                    <br></br>
+
+                    <button onClick = {(e) => this.yesDialog(e)}>Yes</button>
+                </Modal>
+                </span>
+                
+                
+                
+                
+                </h5> 
+                
+               
+
+
+
                 <div className="input-field">
                     <label htmlFor="email">Name</label>
                     <input className="active" type="text" name="name" id="name" onChange={(e) => this.handleChange(e)} value={todoList.name} />
