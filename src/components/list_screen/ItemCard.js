@@ -9,6 +9,7 @@ class ItemCard extends React.Component {
                     <span className="card-title">{item.description}</span>
                 </div>
             </div>
+            
         );
     }
 }

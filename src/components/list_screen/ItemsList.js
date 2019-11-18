@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import ItemCard from './ItemCard';
+import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 
 class ItemsList extends React.Component {
@@ -14,10 +15,14 @@ class ItemsList extends React.Component {
                 {items && items.map(function(item) {
                     item.id = item.key;
                     return (
+                        <Link to={{pathname: '/adding', sampleParam: todoList, sampleParam2: "0", sampleParam3: item.id }}> 
                         <ItemCard todoList={todoList} item={item} />
+                        </Link>
                     );})
                 }
             </div>
+            
+            
         );
     }
 }

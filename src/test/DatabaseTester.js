@@ -2,7 +2,6 @@ import React from 'react'
 import { connect } from 'react-redux';
 import todoJson from './TestTodoListData.json'
 import { getFirestore } from 'redux-firestore';
-import moment from "moment"
 
 class DatabaseTester extends React.Component {
 
@@ -41,6 +40,7 @@ class DatabaseTester extends React.Component {
                 <button onClick={this.handleClear}>Clear Database</button>
                 <button onClick={this.handleReset}>Reset Database</button>
             </div>)
+            
     }
 }
 

@@ -2,15 +2,20 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import { Link } from 'react-router-dom';
+
 import ItemsList from './ItemsList.js'
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
+import ItemScreen from '../item_screen/ItemScreen.js';
 
 class ListScreen extends Component {
     state = {
         name: '',
         owner: '',
     }
+
+
 
     handleChange = (e) => {
         const { target } = e;
@@ -58,7 +63,14 @@ class ListScreen extends Component {
                     <label htmlFor="password">Owner</label>
                     <input className="active" type="text" name="owner" id="owner" onChange={(e) => this.handleChange(e)} value={todoList.owner} />
                 </div>
-                <ItemsList todoList={todoList} />
+                <ItemsList todoList = {todoList}/>
+                <div className="card z-depth-0 todo-list-link pink lighten-3">
+                <div className="card-content grey-text text-darken-3">
+                    {/* <div><Link to="/adding">+</Link></div> */}
+                    <div><Link to={{pathname: "/adding", sampleParam: this.props.todoList, sampleParam2: "1"}}>+</Link></div>
+                 
+                </div>
+            </div>
             </div>
         );
     }
