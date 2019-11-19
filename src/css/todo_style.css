@@ -33,6 +33,10 @@ div.banner {
   padding-bottom: 5%;
 }
 
+#todoheader {
+  background: var(--swatch-accent);
+}
+
 .home_new_list_button {
   font-size: 32pt;
 }
@@ -48,6 +52,10 @@ div.banner {
   width: 110%;
   margin-top: -45px;
   margin-left: -10px;
+}
+
+#eachcard {
+  background: rgb(245, 245, 220);
 }
 
 #abcde {
@@ -92,6 +100,47 @@ div.banner {
 
 .status_header {
   margin-left: 100px;
+}
+
+#floatingbutton {
+ width: 30px;
+ height: 30px;
+ /* size: 300px; */
+ font-size: 25px;
+
+ /* margin-right: -20px; */
+
+/* top: -23%; */
+}
+
+#backgroundcard {
+  background: transparent;
+}
+
+
+#addbutton {
+  /* margin-left: 250px; */
+  text-align: center;
+  font-weight: bold;
+}
+
+#addbuttonin {
+  margin-top: -49px;
+  /* background: var(--swatch-accent); */
+  background: brown;
+  /* width: 106.6%; */
+  width: 107.5%;
+}
+
+#buttontest {
+  position: absolute;
+  padding-left: 200px;
+  padding-bottom: 45px;
+  top: 15%;
+}
+
+#modaltesting {
+  margin-left: 600px !important;
 }
 
 .list_item_card_not_completed {

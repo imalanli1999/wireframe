@@ -5,6 +5,8 @@ import ItemCard from './ItemCard';
 import { Link } from 'react-router-dom';
 import { firestoreConnect } from 'react-redux-firebase';
 import { getFirestore } from 'redux-firestore';
+import {FAB, Button, Icon} from 'react-materialize';
+
 
 
 class ItemsList extends React.Component {
@@ -13,6 +15,11 @@ class ItemsList extends React.Component {
         dateSorted: "dsc",
         completedSorted: "dsc"
     }
+
+    goUp = (e) => {
+        console.log("testing");
+    }
+
     sortingTask = (e) => {
         const myTask = this.props.todoList;
 
@@ -181,6 +188,8 @@ class ItemsList extends React.Component {
 
 
 
+
+
     render() {
         const todoList = this.props.todoList;
         const items = todoList.items;
@@ -191,8 +200,8 @@ class ItemsList extends React.Component {
             <div className="todo-lists section">
                 <div className="row">
                                     <div className="col s12 m6" id = "abcde">
-                                    <div className="card black darken-1">
-                                        <div className="card-content white-text">
+                                    <div className="card black darken-1" >
+                                        <div className="card-content white-text" id= "todoheader">
                                             <span onClick = {(e) => this.sortingTask(e)} className = "task_header">Task</span>
                                             <span onClick = {(e) => this.sortingDate(e)} className = "date_header">Date</span>
                                             <span onClick = {(e) => this.sortingCompleted(e)} className = "status_header">Status</span>
@@ -208,10 +217,12 @@ class ItemsList extends React.Component {
 
                         <div className="row">
                                     <div className="col s12 m6" id = "abcd">
+                                        
                                     <div className="card grey darken-1">
-                                        <div className="card-content white-text">
+                                        <div className="card-content black-text" id="eachcard">
                                         <ItemCard todoList={todoList} item={item} />
                                         </div>
+                                        
                                     </div>
                                     </div>
                                 </div>
