@@ -15,7 +15,7 @@ class ListScreen extends Component {
         owner: '',
     }
 
-    yesDialog = (e) => {
+    yesDialog = () => {
         getFirestore().collection("todoLists").doc(this.props.todoList.id).delete();
         this.props.history.push("/");
     }
@@ -46,14 +46,6 @@ class ListScreen extends Component {
         }
 
     
-   
-
-        // this.setState(state => ({
-        //     name: target.value,
-        //     owner: target.value
-        //     // ...state,
-        //     // [target.id]: target.value,
-        // }));
     }
 
     render() {
@@ -75,7 +67,7 @@ class ListScreen extends Component {
 
                     <br></br>
                     <p>
-                        This action cannot be undone.
+                        This action is final.
                     </p>
                 </Modal>
                 </span>
