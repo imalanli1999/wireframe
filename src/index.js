@@ -1,6 +1,7 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import 'antd/dist/antd.css';
 
 import './css/todo_layout.css'
 import './css/todo_style.css'

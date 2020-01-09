@@ -18,6 +18,11 @@ body {
   font-family: 'Lexend Exa';
 }
 
+.sidebars {
+  background: white;
+  height: 100vh;
+}
+
 
 div.banner {
   background-image: linear-gradient(to bottom,         
