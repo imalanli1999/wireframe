@@ -1,5 +1,5 @@
 import { Stage, Layer, Group, Rect, Transformer, Text } from 'react-konva';
-import React, {useState} from 'react';
+import React from 'react';
 import ReactDOM from "react-dom";
 
 const CanvasElements = (params) => {
@@ -7,11 +7,20 @@ const CanvasElements = (params) => {
     const trRef = React.useRef();
     const [shape, setShape] = React.useState(params.shapeProps);
 
+    React.useEffect(() =>{
+        if(params.isSelected) {
+            trRef.current.setNode(shapeRef.current);
+            trRef.current.getLayer().batchDraw();
+        }
+    }, [params.isSelected])
+
     return (
         <React.Fragment>
             <Group>
                 <Group
                 ref = {shapeRef}
+                draggable
+                onClick = {"true" ? params.onSelect : null}
                 {...shape}
 
                 onDragMove = {(e) => {
@@ -34,7 +43,7 @@ const CanvasElements = (params) => {
                         ...shape,
                         x : node.x(),
                         y : node.y(),
-                        width : Math.max(5, node.weight() * scaleX),
+                        width : Math.max(5, node.width() * scaleX),
                         height : Math.max(node.height() * scaleY)
                     }
                     setShape(item);
@@ -43,17 +52,24 @@ const CanvasElements = (params) => {
                 
                 <Rect
                 stroke = {"black"}
-                width = {250}
-                height = {50}
+                width = {shape.width}
+                height = {shape.height}
                 strokeWidth = {1}
                 strokeScaleEnabled = {false}
                 fill = {"black"}
                 >
-                    
                 </Rect>
 
-
                 </Group>
+
+                {params.isSelected && <Transformer
+                ref = {trRef}
+                rotateAnchorOffset = {25}
+                rotationSnaps = {0, 90, 180, 270}
+                anchorSize = {10}
+                padding = {2}
+                />}
+                
             </Group>
         </React.Fragment>
     )

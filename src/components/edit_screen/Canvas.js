@@ -9,7 +9,8 @@ const holder = [{
     height: 50,
     fill: "black",
     strokeWidth: 1,
-}];
+    id : 1
+}]; 
 
 const Canvas = () => {
 
