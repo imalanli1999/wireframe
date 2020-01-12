@@ -9,6 +9,9 @@ import {Layout} from 'antd/lib';
 
 
 const EditScreen = () => {
+
+    const [template, setTemplate] =  useState(null);
+
     return(
         <Layout width = "100%">
             <br></br>
@@ -17,14 +20,19 @@ const EditScreen = () => {
                 <Layout.Sider 
                 width = {300}
                 height = "800"
-                className = "sidebars"> <Input/> 
+                className = "sidebars"> 
+                    <Input
+                    setTemplate = {setTemplate}/> 
                 </Layout.Sider>
 
 
                 <Layout.Content
                 width = {800} 
                 height = {800}
-                className = "middle-screen"> <Canvas/>
+                className = "middle-screen"> 
+                    <Canvas
+                    setTemplate = {setTemplate}
+                    template = {template}/>
                 </Layout.Content>
 
 

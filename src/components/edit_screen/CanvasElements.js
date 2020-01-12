@@ -20,7 +20,7 @@ const CanvasElements = (params) => {
                 <Group
                 ref = {shapeRef}
                 draggable = {params.onInputBar ? false : true}
-                onClick = {"true" ? params.onSelect : null}
+                onClick = {!params.onInputBar ? params.onSelect : null}
                 {...shape}
 
                 onDragMove = {(e) => {
@@ -33,7 +33,7 @@ const CanvasElements = (params) => {
                     setShape(item);
                 }}
                 
-                onTransform = {(e) => {
+                onTransform = {() => {
                     const node = shapeRef.current;
                     const scaleX = node.scaleX();
                     const scaleY = node.scaleY();

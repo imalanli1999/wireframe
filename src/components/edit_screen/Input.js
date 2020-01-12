@@ -40,7 +40,7 @@ const textfieldTemplate = {
 }
 
 
-const Input = () => {
+const Input = (params) => {
     const [selectedId, selectShape] = React.useState(null);
 
     return(
@@ -50,7 +50,8 @@ const Input = () => {
         height = {800}>
             <Layer>
                 
-                <Group>
+                <Group
+                onClick = {() => params.setTemplate(containerTemplate.id)}>
                     <CanvasElements
                     shapeProps = {containerTemplate}
                     isSelected = {containerTemplate.id === selectedId}
@@ -69,7 +70,8 @@ const Input = () => {
                     </Label>
                 </Group>
 
-                <Group>
+                <Group
+                onClick = {() => params.setTemplate(labelTemplate.id)}>
                     <CanvasElements
                     shapeProps = {labelTemplate}
                     isSelected = {labelTemplate.id === selectedId}
@@ -100,7 +102,8 @@ const Input = () => {
                     </Label>
                 </Group>
 
-                <Group>
+                <Group
+                onClick = {() => params.setTemplate(buttonTemplate.id)}>
                     <CanvasElements
                     shapeProps = {buttonTemplate}
                     isSelected = {buttonTemplate.id === buttonTemplate}
@@ -131,7 +134,8 @@ const Input = () => {
                     </Label>
                 </Group>
                 
-                <Group>
+                <Group
+                onClick = {() => params.setTemplate(textfieldTemplate.id)}>
                     <CanvasElements
                     shapeProps = {textfieldTemplate}
                     isSelected = {textfieldTemplate.id === textfieldTemplate}
