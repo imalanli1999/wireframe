@@ -30,8 +30,8 @@ const Canvas = (params) => {
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
-                text: "",
-                fontSize : "",
+                content: "",
+                textSize: "",
                 textColor: "black"
             }
 
@@ -51,9 +51,9 @@ const Canvas = (params) => {
                 stroke: "black",
                 strokeWidth: 0,
                 cornerRadius: 1,
-                text: "Prompt for Input",
-                fontSize : 20, 
-                fontColor: "black"
+                content: "Prompt for Input",
+                textSize: 20, 
+                textColor: "black"
                 
             }
             holder.push(rectangle);
@@ -72,9 +72,9 @@ const Canvas = (params) => {
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
-                text: "Submit",
-                fontSize : 20,
-                fontColor: "black"
+                content: "Submit",
+                textSize: 20,
+                textColor: "black"
             }
 
             holder.push(rectangle);
@@ -93,9 +93,9 @@ const Canvas = (params) => {
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
-                text: "input", 
-                fontSize: 20,
-                fontColor: "black"
+                content: "input", 
+                textSize: 20,
+                textColor: "black"
             }
             holder.push(rectangle);
             params.setTemplate(null);
@@ -137,6 +137,12 @@ const Canvas = (params) => {
                         isSelected = {rect.id === selectedId}
                         onSelect = {() =>  {selectShape(rect.id)}}
                         type = {rect.type}
+                        borderColor = {params.borderColor}
+                        fontColor = {params.fontColor}
+                        backgroundColor = {params.backgroundColor}
+                        setBackgroundColor = {params.setBackgroundColor}
+                        setBorderColor = {params.setBorderColor}
+                        setFontColor = {params.setFontColor}
                         />
                     )
                 })}

@@ -1,12 +1,10 @@
 import React from 'react';
+import {CompactPicker} from "react-color";
 
-import {SketchPicker, CompactPicker} from "react-color";
-
-
-
-const Properties = () => {
+const Properties = (params) => {
     return(
         <div className = "container">
+            
             <h5> Properties </h5>
             <input id = "right-textfield" type="text"/>
 
@@ -16,12 +14,18 @@ const Properties = () => {
             </div>
 
             <div className = "fontColor">
-                <CompactPicker/>
+                <CompactPicker
+                color = {params.fontColor}
+                onChange = {(e) => params.setFontColor(e.hex)}
+                />
                 <label className = "labelText"> Font Color: </label>
             </div>
 
             <div className = "backgroundColor">
-                <CompactPicker/>
+                <CompactPicker
+                color = {params.backgroundColor}
+                onChange = {(e) => params.setBackgroundColor(e.hex)}
+                />
                 <label className = "labelText"> Background: </label>
             </div>
 
@@ -36,10 +40,12 @@ const Properties = () => {
             </div>
 
             <div className = "borderColor">
-                <CompactPicker/>
+                <CompactPicker
+                color = {params.borderColor}
+                onChange = {(e) => params.setBorderColor(e.hex)}
+                />
                 <label className = "labelText"> Border Color: </label>
             </div>
-
 
         </div>
     )

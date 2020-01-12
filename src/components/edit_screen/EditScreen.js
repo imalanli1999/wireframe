@@ -12,6 +12,10 @@ import {Layout} from 'antd/lib';
 const EditScreen = () => {
 
     const [template, setTemplate] =  useState(null);
+    const [backgroundColor, setBackgroundColor] = useState("black");
+    const [borderColor, setBorderColor] = useState("black");
+    const [fontColor, setFontColor] = useState("black");
+    
 
     return(
         <Layout width = "100%">
@@ -33,7 +37,14 @@ const EditScreen = () => {
                 className = "middle-screen"> 
                     <Canvas
                     setTemplate = {setTemplate}
-                    template = {template}/>
+                    template = {template}
+                    borderColor = {borderColor}
+                    fontColor = {fontColor}
+                    backgroundColor = {backgroundColor}
+                    setBackgroundColor = {setBackgroundColor}
+                    setBorderColor = {setBorderColor}
+                    setFontColor = {setFontColor} 
+                    />
                 </Layout.Content>
 
 
@@ -41,7 +52,14 @@ const EditScreen = () => {
                 width = {300} 
                 height = {800}
                 className = "sidebars"> 
-                    <Properties/>
+                    <Properties
+                     borderColor = {borderColor}
+                     fontColor = {fontColor}
+                     backgroundColor = {backgroundColor}
+                     setBackgroundColor = {setBackgroundColor}
+                     setBorderColor = {setBorderColor}
+                     setFontColor = {setFontColor} 
+                     />
                 </Layout.Sider>
                 
             </Layout>
