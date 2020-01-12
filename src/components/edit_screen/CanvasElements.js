@@ -8,12 +8,12 @@ const CanvasElements = (params) => {
     const trRef = React.useRef();
 
     const [shape, setShape] = React.useState(params.shapeProps);
-    const [edit, setEdit] = React.useState(null);
+    const [edit, setEdit] = React.useState(false);
 
-    const [text, setText] = React.useState(params.shapeProps.text);
-    const [fontSize, setFontSize] = React.useState(20);
-    const [border, setBorder] = React.useState(1);
-    const [borderRadius, setBorderRadius] = React.useState(1);
+    const [text, setText] = React.useState(null);
+    const [fontSize, setFontSize] = React.useState(null);
+    const [border, setBorder] = React.useState(null);
+    const [borderRadius, setBorderRadius] = React.useState(null);
 
     const templateText = document.getElementById("right-textfield");
     const templateFontSize = document.getElementById("font-size-textfield");
@@ -25,23 +25,23 @@ const CanvasElements = (params) => {
         setTimeout(function() {
             setText(e.target.value)
         })
-    }, 100)
+    }, 300)
 
     templateFontSize.addEventListener("keydown", function(e) {
         setTimeout(function() {
-            setFontSize(e.target.value)
+            setFontSize(Number(e.target.value));
         })
     }, 100)
 
     templateBorderThickness.addEventListener("keydown", function(e) {
         setTimeout(function() {
-            setBorder(e.target.value)
+            setBorder(Number(e.target.value));
         })
     }, 100)
 
     templateBorderRadius.addEventListener("keydown", function(e) {
         setTimeout(function() {
-            setBorderRadius(e.target.value)
+            setBorderRadius(Number(e.target.value));
         })
     }, 100)
     
@@ -52,7 +52,7 @@ const CanvasElements = (params) => {
                 stroke : params.borderColor,
                 fill : params.backgroundColor,
                 textColor : params.fontColor,
-                strokeWdith : border,
+                strokeWidth : border,
                 content : text,
                 textSize : fontSize,
                 cornerRadius : borderRadius
@@ -60,7 +60,7 @@ const CanvasElements = (params) => {
             }
             setShape(item);
         }
-    }, [params.borderColor, params.backgroundColor, params.textColor, border, text, fontSize, borderRadius])
+    }, [params.borderColor, params.backgroundColor, params.fontColor, border, text, fontSize, borderRadius])
 
     React.useEffect(() => {
         if(params.isSelected) {
@@ -82,10 +82,23 @@ const CanvasElements = (params) => {
             <Group
             onClick = {!params.onInputBar ?
             () => {
+                params.setBackgroundColor(shape.fill);
+                params.setBorderColor(shape.stroke);
+                params.setFontColor(shape.textColor);
+                setText(shape.content);
+                setBorder(shape.strokeWidth);
+                setBorderRadius(shape.cornerRadius);
+                setFontSize(shape.textSize);
+
+
                 templateText.value = shape.content;
                 templateFontSize.value = shape.textSize;
                 templateBorderThickness.value = shape.strokeWidth;
                 templateBorderRadius.value = shape.cornerRadius;
+
+                console.log(shape.content);
+
+                setEdit(!edit);
             } : null}
             >
 
@@ -123,19 +136,22 @@ const CanvasElements = (params) => {
                 >
                 
                 <Rect
-                stroke = {"black"}
+                stroke = {shape.stroke}
                 width = {shape.width}
                 height = {shape.height}
-                strokeWidth = {1}
+                cornerRadius = {shape.cornerRadius}
+                strokeWidth = {shape.strokeWidth}
                 strokeScaleEnabled = {false}
                 fill = {shape.fill}
                 >
                 </Rect>
 
-                {<Text
+                {!params.onInputBar && <Text
                 height = {shape.height}
                 width = {shape.width}
                 text = {shape.content}
+                fontSize = {shape.textSize}
+                fill = {shape.textColor}
                 align = {"center"}
                 verticalAlign = {"middle"}
                 />}

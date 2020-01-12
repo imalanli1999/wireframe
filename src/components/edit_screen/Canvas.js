@@ -3,13 +3,7 @@ import {Stage,Text, Rect, Layer, Group, Label, Tag} from 'react-konva';
 import CanvasElements from './CanvasElements';
 
 const holder = [{
-    x: 10,
-    y: 10,
-    width: 250,
-    height: 50,
-    fill: "black",
-    strokeWidth: 1,
-    id : 1
+
 }]; 
 
 const Canvas = (params) => {
