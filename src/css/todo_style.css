@@ -23,6 +23,10 @@ body {
   height: 100vh;
 }
 
+.middle-screen {
+  height: 100vh;
+}
+
 
 div.banner {
   background-image: linear-gradient(to bottom,         

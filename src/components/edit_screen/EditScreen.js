@@ -23,13 +23,15 @@ const EditScreen = () => {
 
                 <Layout.Content
                 width = {800} 
-                height = {800}> <Canvas/>
+                height = {800}
+                className = "middle-screen"> <Canvas/>
                 </Layout.Content>
 
 
                 <Layout.Sider 
                 width = {300} 
-                height = {800}> right sidebar
+                height = {800}
+                className = "sidebars"> right sidebar
                 </Layout.Sider>
                 
             </Layout>

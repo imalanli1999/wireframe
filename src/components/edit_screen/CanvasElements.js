@@ -19,7 +19,7 @@ const CanvasElements = (params) => {
             <Group>
                 <Group
                 ref = {shapeRef}
-                draggable
+                draggable = {params.onInputBar ? false : true}
                 onClick = {"true" ? params.onSelect : null}
                 {...shape}
 
@@ -56,7 +56,7 @@ const CanvasElements = (params) => {
                 height = {shape.height}
                 strokeWidth = {1}
                 strokeScaleEnabled = {false}
-                fill = {"black"}
+                fill = {shape.fill}
                 >
                 </Rect>
 
