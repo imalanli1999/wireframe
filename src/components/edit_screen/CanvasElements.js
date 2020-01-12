@@ -60,6 +60,14 @@ const CanvasElements = (params) => {
                 >
                 </Rect>
 
+                {<Text
+                height = {shape.height}
+                width = {shape.width}
+                text = {shape.text}
+                align = {"center"}
+                verticalAlign = {"middle"}
+                />}
+
                 </Group>
 
                 {params.isSelected && <Transformer

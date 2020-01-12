@@ -166,14 +166,6 @@ const Input = (params) => {
                         </Text>
                     </Label>
                 </Group>
-
-               
-
-
-
-                
-
-
             </Layer>
         </Stage>
 

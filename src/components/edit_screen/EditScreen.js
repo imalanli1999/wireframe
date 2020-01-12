@@ -2,6 +2,7 @@ import React, { Component, useState, useEffect } from 'react';
 import Konva from 'konva';
 import Input from './Input';
 import Canvas from './Canvas';
+import Properties from './Properties';
 import {Stage, Rect, Layer} from 'react-konva'
 import {Layout} from 'antd/lib';
 
@@ -39,7 +40,8 @@ const EditScreen = () => {
                 <Layout.Sider 
                 width = {300} 
                 height = {800}
-                className = "sidebars"> right sidebar
+                className = "sidebars"> 
+                    <Properties/>
                 </Layout.Sider>
                 
             </Layout>

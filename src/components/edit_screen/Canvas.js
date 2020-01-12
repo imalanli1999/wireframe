@@ -26,7 +26,7 @@ const Canvas = (params) => {
                 height: 200,
                 fill: "#a3a3a3",
                 id: Math.random(0,100),
-                test: "container",
+                type: "container",
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
@@ -47,7 +47,7 @@ const Canvas = (params) => {
                 height: 50,
                 fill: "transparent",
                 id: Math.random(0,100),
-                test: "label",
+                type: "label",
                 stroke: "black",
                 strokeWidth: 0,
                 cornerRadius: 1,
@@ -68,7 +68,7 @@ const Canvas = (params) => {
                 height: 50,
                 fill: "#a3a3a3",
                 id: Math.random(0,100),
-                test: "button",
+                type: "button",
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
@@ -89,7 +89,7 @@ const Canvas = (params) => {
                 height: 30,
                 fill: "#a3a3a3",
                 id: Math.random(0,100),
-                test: "textfield",
+                type: "textfield",
                 stroke: "black",
                 strokeWidth: 1,
                 cornerRadius: 1,
@@ -136,6 +136,7 @@ const Canvas = (params) => {
                         shapeProps = {rect}
                         isSelected = {rect.id === selectedId}
                         onSelect = {() =>  {selectShape(rect.id)}}
+                        type = {rect.type}
                         />
                     )
                 })}
