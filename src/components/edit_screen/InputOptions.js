@@ -40,7 +40,7 @@ const textfieldTemplate = {
 }
 
 
-const Input = (params) => {
+const InputOptions = (params) => {
     const [selectedId, selectShape] = React.useState(null);
 
     return(
@@ -177,4 +177,4 @@ const Input = (params) => {
 
 
 
-export default Input;
+export default InputOptions;

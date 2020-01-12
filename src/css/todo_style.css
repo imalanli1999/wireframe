@@ -18,6 +18,9 @@ body {
   font-family: 'Lexend Exa';
 }
 
+.zoom-buttons {
+  width: 25%;
+}
 .sidebars {
   background: white;
   height: 100vh;

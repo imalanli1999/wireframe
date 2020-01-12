@@ -1,10 +1,10 @@
 import React, { Component, useState, useEffect } from 'react';
 import Konva from 'konva';
-import Input from './Input';
+import InputOptions from './InputOptions';
 import Canvas from './Canvas';
 import Properties from './Properties';
 import {Stage, Rect, Layer} from 'react-konva'
-import {Layout} from 'antd/lib';
+import {Layout, Icon, Button, Input} from 'antd/lib';
 
 
 
@@ -19,14 +19,77 @@ const EditScreen = () => {
 
     return(
         <Layout width = "100%">
-            <br></br>
+            
+            <div>   
+                <Button  
+                size="large" 
+                className = "zoom-buttons" >
+                    <Icon 
+                    type="zoom-in" 
+                    />
+                </Button>
+
+                <Button  
+                size="large" 
+                className = "zoom-buttons" >
+                    <Icon 
+                    type="zoom-out" 
+                    />
+                </Button>
+
+                <Button  
+                size="large" 
+                className = "zoom-buttons">
+                    Save
+                </Button>
+
+                <Button  
+                size="large" 
+                className = "zoom-buttons">
+                    Close
+                </Button>
+            </div>
+
+            <div>
+                <div className = "width-option">
+                    <span className = "weight-text">
+                        Width:
+                    </span>
+                    
+                    <input 
+                    type = "text" 
+                    id = "width-textfield">
+                    </input>
+                </div>
+
+                <div className = "height-option">
+                    <span 
+                    className = "height-text">
+                        Height:
+                    </span>
+
+                    <input 
+                    type = "text" 
+                    id = "height-textfield" >
+                    </input>
+                </div>
+
+                <Button 
+                size = "large" 
+                className = "dimension-button"> 
+                    Update
+                </Button>
+            </div>
+          
+            
+          
             <Layout>
 
                 <Layout.Sider 
                 width = {300}
                 height = "800"
                 className = "sidebars"> 
-                    <Input
+                    <InputOptions
                     setTemplate = {setTemplate}/> 
                 </Layout.Sider>
 

@@ -96,8 +96,6 @@ const CanvasElements = (params) => {
                 templateBorderThickness.value = shape.strokeWidth;
                 templateBorderRadius.value = shape.cornerRadius;
 
-                console.log(shape.content);
-
                 setEdit(!edit);
             } : null}
             >
@@ -146,7 +144,7 @@ const CanvasElements = (params) => {
                 >
                 </Rect>
 
-                {!params.onInputBar && <Text
+                {<Text
                 height = {shape.height}
                 width = {shape.width}
                 text = {shape.content}
