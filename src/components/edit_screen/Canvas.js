@@ -106,6 +106,8 @@ const Canvas = (params) => {
         className = "main-stage"
         width = {5000}
         height = {5000}
+        scaleX = {params.zoom}
+        scaleY = {params.zoom}
         onMouseDown = {e => {
             const clickedOnEmpty = e.target === e.target.getStage();
             if(clickedOnEmpty) {

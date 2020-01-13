@@ -16,6 +16,20 @@ const EditScreen = () => {
     const [borderColor, setBorderColor] = useState("black");
     const [fontColor, setFontColor] = useState("black");
     
+    const [zoom, setZoom] = useState(1);
+
+    const zoomingIn = () => {
+        setZoom(zoom * 2);
+    }
+
+    const zoomingOut = () => {
+        setZoom(zoom / 2);
+    }
+
+
+    useEffect(() => {
+
+    }, [zoom])
 
     return(
         <Layout width = "100%">
@@ -23,15 +37,18 @@ const EditScreen = () => {
             <div>   
                 <Button  
                 size="large" 
-                className = "zoom-buttons" >
+                className = "zoom-buttons" 
+                onClick = {() => {zoomingIn()}}>
                     <Icon 
                     type="zoom-in" 
                     />
+                
                 </Button>
 
                 <Button  
                 size="large" 
-                className = "zoom-buttons" >
+                className = "zoom-buttons" 
+                onClick = {() => {zoomingOut()}}>
                     <Icon 
                     type="zoom-out" 
                     />
@@ -107,6 +124,7 @@ const EditScreen = () => {
                     setBackgroundColor = {setBackgroundColor}
                     setBorderColor = {setBorderColor}
                     setFontColor = {setFontColor} 
+                    zoom = {zoom}
                     />
                 </Layout.Content>
 
