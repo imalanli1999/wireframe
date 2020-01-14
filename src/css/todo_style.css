@@ -28,6 +28,8 @@ body {
 
 .middle-screen {
   height: 100vh;
+  overflow-x: auto!important;
+  overflow-y: auto!important; 
 }
 
 

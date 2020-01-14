@@ -106,6 +106,8 @@ const Canvas = (params) => {
         className = "main-stage"
         width = {5000}
         height = {5000}
+        x = {1000}
+        y = {1000}
         scaleX = {params.zoom}
         scaleY = {params.zoom}
         onMouseDown = {e => {
@@ -117,8 +119,8 @@ const Canvas = (params) => {
             <Layer
             id = "on-stage">
                 <Rect
-                width = {2500}
-                height = {2500}
+                width = {params.dimensionWidth}
+                height = {params.dimensionHeight}
                 fill = "grey"
                 onMouseDown = { e => {
                     selectShape(null);

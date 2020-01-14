@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React from 'react';
 import Konva from 'konva';
 import InputOptions from './InputOptions';
 import Canvas from './Canvas';
@@ -11,12 +11,20 @@ import {Layout, Icon, Button, Input} from 'antd/lib';
 
 const EditScreen = () => {
 
-    const [template, setTemplate] =  useState(null);
-    const [backgroundColor, setBackgroundColor] = useState("black");
-    const [borderColor, setBorderColor] = useState("black");
-    const [fontColor, setFontColor] = useState("black");
+    const [template, setTemplate] =  React.useState(null);
+    const [backgroundColor, setBackgroundColor] = React.useState("black");
+    const [borderColor, setBorderColor] = React.useState("black");
+    const [fontColor, setFontColor] = React.useState("black");
     
-    const [zoom, setZoom] = useState(1);
+    const [zoom, setZoom] = React.useState(1);
+
+    const [dimensionWidth, setDimensionWidth] = React.useState(2000);
+    const [dimensionHeight, setDimensionHeight] = React.useState(2000);
+    const [dimensionWidthHolder, setDimensionWidthHolder] = React.useState(2000);
+    const [dimensionHeightHolder, setDimensionHeightHolder] = React.useState(2000);
+    const [clickable, setClickable] = React.useState("disabled");
+
+    const isFirstRun = React.useRef(true);
 
     const zoomingIn = () => {
         setZoom(zoom * 2);
@@ -26,10 +34,41 @@ const EditScreen = () => {
         setZoom(zoom / 2);
     }
 
+    const changingWidth = (e) => {
+        setDimensionWidthHolder(e.target.value);
+    }
 
-    useEffect(() => {
+    const changingHeight = (e) => {
+        setDimensionHeightHolder(e.target.value);
+    }
 
-    }, [zoom])
+    const changingDimensions = () => {
+        if(dimensionHeightHolder >= 1 && dimensionHeightHolder <= 5000
+            && dimensionWidthHolder >= 1 && dimensionWidthHolder <= 5000) {
+                setDimensionHeight(Number(dimensionHeightHolder));
+                setDimensionWidth(Number(dimensionWidthHolder));
+            }
+        else {
+            setDimensionWidth(dimensionWidth);
+            setDimensionHeight(dimensionHeight);
+        }
+        setClickable("disabled");
+    }
+
+
+    React.useEffect(() => {
+        if(isFirstRun.current) {
+            isFirstRun.current = false;
+            return;
+        }
+        setClickable("");
+    }, [dimensionWidthHolder, dimensionHeightHolder])
+
+
+    React.useEffect(() => {
+
+
+    }, [zoom, dimensionWidth, dimensionHeight, clickable])
 
     return(
         <Layout width = "100%">
@@ -74,8 +113,10 @@ const EditScreen = () => {
                     </span>
                     
                     <input 
+                    onChange = {(e) => changingWidth(e)}
                     type = "text" 
-                    id = "width-textfield">
+                    id = "width-textfield"
+                    value = {dimensionWidthHolder}>
                     </input>
                 </div>
 
@@ -86,14 +127,19 @@ const EditScreen = () => {
                     </span>
 
                     <input 
+                    onChange = {(e) => changingHeight(e)}
                     type = "text" 
-                    id = "height-textfield" >
+                    id = "height-textfield"
+                    value = {dimensionHeightHolder}>
                     </input>
                 </div>
 
                 <Button 
                 size = "large" 
-                className = "dimension-button"> 
+                className = "dimension-button"
+                onClick = {() => changingDimensions()}
+                disabled = {clickable}
+                > 
                     Update
                 </Button>
             </div>
@@ -125,6 +171,8 @@ const EditScreen = () => {
                     setBorderColor = {setBorderColor}
                     setFontColor = {setFontColor} 
                     zoom = {zoom}
+                    dimensionWidth = {dimensionWidth}
+                    dimensionHeight = {dimensionHeight}
                     />
                 </Layout.Content>
 
