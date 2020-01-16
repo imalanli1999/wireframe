@@ -7,7 +7,7 @@ import {Stage, Rect, Layer} from 'react-konva'
 import {Layout, Icon, Button, Input} from 'antd/lib';
 
 
-
+const holder = [{}];
 
 const EditScreen = () => {
 
@@ -25,6 +25,10 @@ const EditScreen = () => {
     const [clickable, setClickable] = React.useState("disabled");
 
     const isFirstRun = React.useRef(true);
+
+    const [clickingOn, setID] = React.useState(null);
+
+
 
     const zoomingIn = () => {
         setZoom(zoom * 2);
@@ -55,6 +59,9 @@ const EditScreen = () => {
         setClickable("disabled");
     }
 
+ 
+
+
 
     React.useEffect(() => {
         if(isFirstRun.current) {
@@ -69,6 +76,13 @@ const EditScreen = () => {
 
 
     }, [zoom, dimensionWidth, dimensionHeight, clickable])
+
+
+
+
+ 
+
+
 
     return(
         <Layout width = "100%">
@@ -173,6 +187,8 @@ const EditScreen = () => {
                     zoom = {zoom}
                     dimensionWidth = {dimensionWidth}
                     dimensionHeight = {dimensionHeight}
+                    setID = {setID}
+                    clickingOn = {clickingOn}
                     />
                 </Layout.Content>
 

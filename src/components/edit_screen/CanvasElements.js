@@ -75,7 +75,13 @@ const CanvasElements = (params) => {
             templateBorderRadius.value = null;
 
         }
+        
+
     }, [params.isSelected])
+
+    // React.useEffect(() => {
+    //    params.setID(params.selectedId);
+    // }, [params.selectedId])
 
     return (
         <React.Fragment>

@@ -2,9 +2,7 @@ import React, { useEffect } from 'react';
 import {Stage,Text, Rect, Layer, Group, Label, Tag} from 'react-konva';
 import CanvasElements from './CanvasElements';
 
-const holder = [{
-
-}]; 
+const holder = [];
 
 const Canvas = (params) => {
 
@@ -99,6 +97,62 @@ const Canvas = (params) => {
 
 
     }, params.template)
+
+
+    const handleKeyDown = (e) => {
+        console.log(selectedId);
+        let charCode = String.fromCharCode(e.which).toLowerCase();
+        if(e.ctrlKey && charCode === 'd') {
+            e.preventDefault();
+            handleDuplicate();
+        }
+        if(e.which === 46) {
+            e.preventDefault();
+            handleDelete();
+        }
+
+    }
+
+    const handleDuplicate = () => {
+        var counter = 0;
+        var newObject = null;
+
+        if(selectedId != null) {
+            for(counter; counter < holder.length; counter++) {
+                if(holder[counter].id === selectedId) {
+                    newObject = JSON.parse(JSON.stringify(holder[counter]));
+                    newObject.id = Math.random(0,100);
+                }
+            }
+        rectangles.push(newObject);
+        selectShape(null);
+        setRectangles(rectangles);
+        }
+    }
+
+    const handleDelete = () => {
+        var counter = 0;
+        if(selectedId != null) {
+            for(counter; counter < holder.length; counter++) {
+                if(holder[counter].id === selectedId) {
+                    holder.splice(counter, 1);
+                }
+            }
+            selectShape(null);
+            setRectangles(rectangles);
+        }
+    }
+
+    React.useEffect(() => {
+        window.addEventListener("keydown", handleKeyDown);
+        return () => {
+          window.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [selectedId]);
+
+
+   
+  
     
     return(
 
@@ -121,7 +175,7 @@ const Canvas = (params) => {
                 <Rect
                 width = {params.dimensionWidth}
                 height = {params.dimensionHeight}
-                fill = "grey"
+                fill = "grey"s
                 onMouseDown = { e => {
                     selectShape(null);
                 }}>
@@ -141,6 +195,7 @@ const Canvas = (params) => {
                         setBackgroundColor = {params.setBackgroundColor}
                         setBorderColor = {params.setBorderColor}
                         setFontColor = {params.setFontColor}
+                        setID = {params.setID}
                         />
                     )
                 })}
